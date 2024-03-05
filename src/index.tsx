@@ -5,6 +5,8 @@ import App from './components/app/app';
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 const Setting = {
+  count_places: 5,
+    
   active_city_id: 3,
 
   is_main: true,
@@ -20,6 +22,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App 
+      count_places={Setting.count_places}
       cities={cities}
       active_city_id={Setting.active_city_id}
       is_main={Setting.is_main}

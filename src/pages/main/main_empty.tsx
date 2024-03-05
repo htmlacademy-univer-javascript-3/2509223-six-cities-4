@@ -2,6 +2,8 @@ import CitiesTabs from "../../components/cities_tabs";
 import Header from "../../components/header";
 
 type MainEmptyProps = {
+    count_places: number;
+    
     cities: string[];
     active_city_id: number;
 

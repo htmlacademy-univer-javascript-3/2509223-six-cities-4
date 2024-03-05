@@ -2,6 +2,8 @@
 import Main from "../../pages/main/main";
 
 type AppScreenProps = {
+    count_places: number;
+    
     cities: string[];
     active_city_id: number;
 
@@ -13,7 +15,8 @@ type AppScreenProps = {
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
     return (
-        <Main 
+        <Main
+            count_places={appScreenProps.count_places}
             cities={appScreenProps.cities} 
             active_city_id={appScreenProps.active_city_id} 
             is_main={appScreenProps.is_main} 
