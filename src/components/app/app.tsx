@@ -1,6 +1,7 @@
 //import MainEmpty from "../../pages/main/main_empty";
 import Main from "../../pages/main/main";
 import Header from "../header";
+import Footer from "../footer";
 
 type AppScreenProps = {
     count_places: number;
@@ -12,6 +13,8 @@ type AppScreenProps = {
     was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел 
     email?: string;
     favorite?: number;
+
+    is_needing_footer: boolean;
 }
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
@@ -29,6 +32,8 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
                 cities={appScreenProps.cities} 
                 active_city_id={appScreenProps.active_city_id}
             />
+
+            {appScreenProps.is_needing_footer && <Footer />}          
         </div>        
     );
 }

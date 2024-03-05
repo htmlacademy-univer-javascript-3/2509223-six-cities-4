@@ -13,6 +13,8 @@ const Setting = {
   was_login: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел 
   email: 'Oliver.conner@gmail.com',
   favorite: 3,
+
+  is_needing_footer: false,
 }as const;
 
 const root = ReactDOM.createRoot(
@@ -29,6 +31,7 @@ root.render(
       was_login={Setting.was_login}
       email={Setting.email}
       favorite={Setting.favorite}
+      is_needing_footer={Setting.is_needing_footer}
       />
   </React.StrictMode>
 );
