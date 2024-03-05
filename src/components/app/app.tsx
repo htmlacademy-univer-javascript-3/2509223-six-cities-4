@@ -1,5 +1,6 @@
 //import MainEmpty from "../../pages/main/main_empty";
 import Main from "../../pages/main/main";
+import Header from "../header";
 
 type AppScreenProps = {
     count_places: number;
@@ -15,15 +16,20 @@ type AppScreenProps = {
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
     return (
-        <Main
-            count_places={appScreenProps.count_places}
-            cities={appScreenProps.cities} 
-            active_city_id={appScreenProps.active_city_id} 
-            is_main={appScreenProps.is_main} 
-            was_login={appScreenProps.was_login}
-            email={appScreenProps.email}
-            favorite={appScreenProps.favorite}
-        />
+        <div>
+            <Header 
+                is_main={appScreenProps.is_main} 
+                was_login={appScreenProps.was_login} 
+                email={appScreenProps.email}
+                favorite={appScreenProps.favorite}
+            />
+
+            <Main
+                count_places={appScreenProps.count_places}
+                cities={appScreenProps.cities} 
+                active_city_id={appScreenProps.active_city_id}
+            />
+        </div>        
     );
 }
 
