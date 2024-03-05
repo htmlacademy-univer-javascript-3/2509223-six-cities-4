@@ -2,6 +2,8 @@ import MainEmpty from "../../pages/main/main_empty";
 import Main from "../../pages/main/main";
 import Header from "../header";
 import Footer from "../footer";
+import Favorite from "../../pages/favorites/favorites";
+import FavoriteEmpty from "../../pages/favorites/favorites_empty";
 
 type AppScreenProps = {
     count_places: number;
@@ -9,14 +11,13 @@ type AppScreenProps = {
     cities: string[];
     active_city_id: number;
 
-    current_page: 'main',
+    current_page: string,
+    is_needing_footer: boolean;
 
     is_main: boolean;
     was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел 
     email?: string;
-    favorite?: number;
-
-    is_needing_footer: boolean;
+    favorite?: number;    
 }
 
 function Get_Main(appScreenProps: AppScreenProps): JSX.Element {
@@ -35,6 +36,17 @@ function Get_Main(appScreenProps: AppScreenProps): JSX.Element {
         />);
 }
 
+function Get_Favorite(appScreenProps:AppScreenProps): JSX.Element {
+    if (appScreenProps.favorite !== undefined){
+        if (appScreenProps.favorite > 0) {
+            return (<Favorite />)
+        }
+    
+        return (<FavoriteEmpty />);
+    }
+    return <></>;
+}
+
 function App(appScreenProps: AppScreenProps): JSX.Element {
     return (
         <div>
@@ -45,7 +57,8 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
                 favorite={appScreenProps.favorite}
             />
 
-            {appScreenProps.current_page === 'main' && Get_Main(appScreenProps)}         
+            {appScreenProps.current_page === 'main' && Get_Main(appScreenProps)}    
+            {appScreenProps.current_page === 'favorites' && Get_Favorite(appScreenProps)}     
 
             {appScreenProps.is_needing_footer && <Footer />}          
         </div>        

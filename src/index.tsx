@@ -8,14 +8,13 @@ const Setting = {
   count_places: 5,    
   active_city_id: 3,
 
-  current_page: 'main',
+  current_page: 'favorites',
+  is_needing_footer: false,
 
   is_main: true,
   was_login: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел 
   email: 'Oliver.conner@gmail.com',
   favorite: 3,
-
-  is_needing_footer: false,
 }as const;
 
 const root = ReactDOM.createRoot(
