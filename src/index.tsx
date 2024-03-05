@@ -5,9 +5,10 @@ import App from './components/app/app';
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 const Setting = {
-  count_places: 0,
-    
+  count_places: 5,    
   active_city_id: 3,
+
+  current_page: 'main',
 
   is_main: true,
   was_login: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел 
@@ -27,6 +28,7 @@ root.render(
       count_places={Setting.count_places}
       cities={cities}
       active_city_id={Setting.active_city_id}
+      current_page={Setting.current_page}
       is_main={Setting.is_main}
       was_login={Setting.was_login}
       email={Setting.email}

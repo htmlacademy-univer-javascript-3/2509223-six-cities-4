@@ -9,12 +9,30 @@ type AppScreenProps = {
     cities: string[];
     active_city_id: number;
 
+    current_page: 'main',
+
     is_main: boolean;
     was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел 
     email?: string;
     favorite?: number;
 
     is_needing_footer: boolean;
+}
+
+function Get_Main(appScreenProps: AppScreenProps): JSX.Element {
+    if (appScreenProps.count_places > 0) {
+        return (<Main
+            count_places={appScreenProps.count_places}
+            cities={appScreenProps.cities} 
+            active_city_id={appScreenProps.active_city_id}
+        />)
+    }
+
+    return (<MainEmpty
+            count_places={appScreenProps.count_places}
+            cities={appScreenProps.cities} 
+            active_city_id={appScreenProps.active_city_id}
+        />);
 }
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
@@ -27,17 +45,7 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
                 favorite={appScreenProps.favorite}
             />
 
-            {appScreenProps.count_places>0 && <Main
-                count_places={appScreenProps.count_places}
-                cities={appScreenProps.cities} 
-                active_city_id={appScreenProps.active_city_id}
-            />}
-
-            {appScreenProps.count_places<=0 && <MainEmpty
-                count_places={appScreenProps.count_places}
-                cities={appScreenProps.cities} 
-                active_city_id={appScreenProps.active_city_id}
-            />}            
+            {appScreenProps.current_page === 'main' && Get_Main(appScreenProps)}         
 
             {appScreenProps.is_needing_footer && <Footer />}          
         </div>        
