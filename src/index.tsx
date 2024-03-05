@@ -5,7 +5,7 @@ import App from './components/app/app';
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 const Setting = {
-  active_city_id: 5,
+  active_city_id: 3,
 
   is_main: true,
   was_login: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел 

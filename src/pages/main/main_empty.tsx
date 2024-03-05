@@ -12,7 +12,6 @@ type MainEmptyProps = {
 }
 
 function MainEmpty(mainEmptyProps:MainEmptyProps): JSX.Element {
-
     return (
         <div className="page page--gray page--main">
             <Header 

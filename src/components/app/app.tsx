@@ -1,4 +1,5 @@
-import MainEmpty from "../../pages/main/main_empty";
+//import MainEmpty from "../../pages/main/main_empty";
+import Main from "../../pages/main/main";
 
 type AppScreenProps = {
     cities: string[];
@@ -12,7 +13,7 @@ type AppScreenProps = {
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
     return (
-        <MainEmpty 
+        <Main 
             cities={appScreenProps.cities} 
             active_city_id={appScreenProps.active_city_id} 
             is_main={appScreenProps.is_main} 
