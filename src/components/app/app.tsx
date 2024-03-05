@@ -1,4 +1,4 @@
-//import MainEmpty from "../../pages/main/main_empty";
+import MainEmpty from "../../pages/main/main_empty";
 import Main from "../../pages/main/main";
 import Header from "../header";
 import Footer from "../footer";
@@ -27,11 +27,17 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
                 favorite={appScreenProps.favorite}
             />
 
-            <Main
+            {appScreenProps.count_places>0 && <Main
                 count_places={appScreenProps.count_places}
                 cities={appScreenProps.cities} 
                 active_city_id={appScreenProps.active_city_id}
-            />
+            />}
+
+            {appScreenProps.count_places<=0 && <MainEmpty
+                count_places={appScreenProps.count_places}
+                cities={appScreenProps.cities} 
+                active_city_id={appScreenProps.active_city_id}
+            />}            
 
             {appScreenProps.is_needing_footer && <Footer />}          
         </div>        

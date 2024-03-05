@@ -5,7 +5,7 @@ import App from './components/app/app';
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 const Setting = {
-  count_places: 5,
+  count_places: 0,
     
   active_city_id: 3,
 
