@@ -1,4 +1,5 @@
 type PlaceCardProps = {
+    key?: string;
     mark?: string;
     src_img: string;
     price_valuta: string;

@@ -5,6 +5,7 @@ function Favorite(): JSX.Element {
   const favoritesLocations = {
     'Amsterdam': [
       <PlaceCard
+        key="amsterdam-1"
         mark="Premium"
         src_img = "img/apartment-small-03.jpg"
         price_valuta = "&euro;"
@@ -15,6 +16,7 @@ function Favorite(): JSX.Element {
       />,
 
       <PlaceCard
+        key="amsterdam-2"
         src_img = "img/room-small.jpg"
         price_valuta = "&euro;"
         price_value = {80}
@@ -25,6 +27,7 @@ function Favorite(): JSX.Element {
     ],
     'Cologne': [
       <PlaceCard
+        key="cologne-1"
         src_img = "img/apartment-small-04.jpg"
         price_valuta = "&euro;"
         price_value = {180}
