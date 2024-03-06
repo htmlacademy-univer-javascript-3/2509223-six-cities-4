@@ -36,7 +36,7 @@ function Main(mainProps:MainProps): JSX.Element {
             </form>
             <div className="cities__places-list places__list tabs__content">
               <PlaceCard
-                isPremium={true}
+                isPremium
                 images = "img/apartment-01.jpg"
                 price = {120}
                 isFavorite = {false}
@@ -63,7 +63,7 @@ function Main(mainProps:MainProps): JSX.Element {
               />
 
               <PlaceCard
-                isPremium={true}
+                isPremium
                 images = "img/apartment-03.jpg"
                 price = {180}
                 isFavorite = {false}

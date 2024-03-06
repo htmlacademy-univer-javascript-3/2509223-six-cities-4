@@ -6,7 +6,7 @@ function Favorite(): JSX.Element {
     'Amsterdam': [
       <PlaceCard
         key="amsterdam-1"
-        isPremium={true}
+        isPremium
         images = "img/apartment-small-03.jpg"
         price = {180}
         isFavorite
