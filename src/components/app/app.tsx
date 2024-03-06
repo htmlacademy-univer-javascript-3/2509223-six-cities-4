@@ -38,16 +38,16 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     />);
 }
 
-function GetFavorite(appScreenProps:AppScreenProps): JSX.Element {
-  if (appScreenProps.favorite !== undefined){
+function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
+  if (appScreenProps.favorite !== undefined) {
     if (appScreenProps.favorite > 0) {
-      return (<Favorite />);
+      return <Favorite />;
     }
-
-    return (<FavoriteEmpty />);
+    return <FavoriteEmpty />;
   }
-  return <></>;
+  return null;
 }
+
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
   return (

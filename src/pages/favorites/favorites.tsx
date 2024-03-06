@@ -42,7 +42,7 @@ function Favorite(): JSX.Element {
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
             {Object.entries(favoritesLocations).map(([location, placeCards]) => (
-              <FavoriteLocation location={[location, placeCards]} />
+              <FavoriteLocation key={location} location={[location, placeCards]} />
             ))}
           </ul>
         </section>
