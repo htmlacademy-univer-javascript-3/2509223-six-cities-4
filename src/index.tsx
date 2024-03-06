@@ -8,7 +8,7 @@ export const Setting = {
   countPlaces: 5,
   activeCityId: 3,
 
-  currentPage: 'favorites',
+  currentPage: 'main',
   isNeedingFooter: false,
 
   isMain: true,
