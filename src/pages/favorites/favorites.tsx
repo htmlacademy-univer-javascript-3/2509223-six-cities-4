@@ -6,34 +6,33 @@ function Favorite(): JSX.Element {
     'Amsterdam': [
       <PlaceCard
         key="amsterdam-1"
-        mark="Premium"
-        src_img = "img/apartment-small-03.jpg"
-        price_valuta = "&euro;"
-        price_value = {180}
-        is_active
-        card_name = "Nice, cozy, warm big bed apartment"
-        card_type = "Apartment"
+        isPremium={true}
+        images = "img/apartment-small-03.jpg"
+        price = {180}
+        isFavorite
+        title = "Nice, cozy, warm big bed apartment"
+        type = "Apartment"
       />,
 
       <PlaceCard
         key="amsterdam-2"
-        src_img = "img/room-small.jpg"
-        price_valuta = "&euro;"
-        price_value = {80}
-        is_active
-        card_name = "Wood and stone place"
-        card_type = "Room"
+        isPremium={false}
+        images = "img/room-small.jpg"
+        price = {80}
+        isFavorite
+        title = "Wood and stone place"
+        type = "Room"
       />,
     ],
     'Cologne': [
       <PlaceCard
         key="cologne-1"
-        src_img = "img/apartment-small-04.jpg"
-        price_valuta = "&euro;"
-        price_value = {180}
-        is_active
-        card_name = "White castle"
-        card_type = "Apartment"
+        isPremium={false}
+        images = "img/apartment-small-04.jpg"
+        price = {180}
+        isFavorite
+        title = "White castle"
+        type = "Apartment"
       />,
     ],
   };

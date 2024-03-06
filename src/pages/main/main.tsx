@@ -36,50 +36,48 @@ function Main(mainProps:MainProps): JSX.Element {
             </form>
             <div className="cities__places-list places__list tabs__content">
               <PlaceCard
-                mark="Premium"
-                src_img = "img/apartment-01.jpg"
-                price_valuta = "&euro;"
-                price_value = {120}
-                is_active = {false}
-                card_name = "Beautiful &amp; luxurious apartment at great location"
-                card_type = "Apartment"
+                isPremium={true}
+                images = "img/apartment-01.jpg"
+                price = {120}
+                isFavorite = {false}
+                title = "Beautiful &amp; luxurious apartment at great location"
+                type = "Apartment"
               />
 
               <PlaceCard
-                src_img = "img/room.jpg"
-                price_valuta = "&euro;"
-                price_value = {80}
-                is_active
-                card_name = "Wood and stone place"
-                card_type = "Room"
+                isPremium={false}
+                images = "img/room.jpg"
+                price = {80}
+                isFavorite
+                title = "Wood and stone place"
+                type = "Room"
               />
 
               <PlaceCard
-                src_img = "img/apartment-02.jpg"
-                price_valuta = "&euro;"
-                price_value = {132}
-                is_active = {false}
-                card_name = "Canal Viw Prinsengracht"
-                card_type = "Apartment"
+                isPremium={false}
+                images = "img/apartment-02.jpg"
+                price = {132}
+                isFavorite = {false}
+                title = "Canal Viw Prinsengracht"
+                type = "Apartment"
               />
 
               <PlaceCard
-                mark="Premium"
-                src_img = "img/apartment-03.jpg"
-                price_valuta = "&euro;"
-                price_value = {180}
-                is_active = {false}
-                card_name = "Nice, cozy, warm big bed apartment"
-                card_type = "Apartment"
+                isPremium={true}
+                images = "img/apartment-03.jpg"
+                price = {180}
+                isFavorite = {false}
+                title = "Nice, cozy, warm big bed apartment"
+                type = "Apartment"
               />
 
               <PlaceCard
-                src_img = "img/room.jpg"
-                price_valuta = "&euro;"
-                price_value = {80}
-                is_active
-                card_name = "Wood and stone place"
-                card_type = "Room"
+                isPremium={false}
+                images = "img/room.jpg"
+                price = {80}
+                isFavorite
+                title = "Wood and stone place"
+                type = "Room"
               />
             </div>
           </section>

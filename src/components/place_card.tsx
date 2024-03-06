@@ -1,26 +1,25 @@
 type PlaceCardProps = {
     key?: string;
-    mark?: string;
-    src_img: string;
-    price_valuta: string;
-    price_value: number;
-    is_active: boolean;
-    card_name: string;
-    card_type: string;
+    isPremium: boolean;
+    images: string;
+    price: number;
+    isFavorite: boolean;
+    title: string;
+    type: string;
 }
 
 function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
   const mark = [];
-  if (placeCardProps.mark !== undefined){
+  if (placeCardProps.isPremium){
     mark.push(
       <div className="place-card__mark">
-        <span>{placeCardProps.mark}</span>
+        <span>Premium</span>
       </div>
     );
   }
 
   const bookmarkButton = [];
-  if (placeCardProps.is_active){
+  if (placeCardProps.isFavorite){
     bookmarkButton.push(
       <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
         <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -45,13 +44,13 @@ function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
       {mark}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={placeCardProps.src_img} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={placeCardProps.images} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">{placeCardProps.price_valuta}{placeCardProps.price_value}</b>
+            <b className="place-card__price-value">&euro;{placeCardProps.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           {bookmarkButton}
@@ -63,9 +62,9 @@ function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{placeCardProps.card_name}</a>
+          <a href="#">{placeCardProps.title}</a>
         </h2>
-        <p className="place-card__type">{placeCardProps.card_type}</p>
+        <p className="place-card__type">{placeCardProps.type}</p>
       </div>
     </article>
   );
