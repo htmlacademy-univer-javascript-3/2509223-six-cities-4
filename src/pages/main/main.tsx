@@ -58,7 +58,7 @@ function Main(mainProps:MainProps): JSX.Element {
                 images = "img/apartment-02.jpg"
                 price = {132}
                 isFavorite = {false}
-                title = "Canal Viw Prinsengracht"
+                title = "Canal View Prinsengracht"
                 type = "Apartment"
               />
 

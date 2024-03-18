@@ -26,13 +26,13 @@ root.render(
     <App
       count_places={Setting.countPlaces}
       cities={cities}
-      active_city_id={Setting.activeCityId}
-      current_page={Setting.currentPage}
-      is_main={Setting.isMain}
-      was_login={Setting.wasLogin}
+      activeCityId={Setting.activeCityId}
+      currentPage={Setting.currentPage}
+      isMain={Setting.isMain}
+      wasLogin={Setting.wasLogin}
       email={Setting.email}
       favorite={Setting.favorite}
-      is_needing_footer={Setting.isNeedingFooter}
+      isNeedingFooter={Setting.isNeedingFooter}
     />
   </React.StrictMode>
 );

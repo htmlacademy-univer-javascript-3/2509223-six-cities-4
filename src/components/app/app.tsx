@@ -4,18 +4,19 @@ import Header from '../header';
 import Footer from '../footer';
 import Favorite from '../../pages/favorites/favorites';
 import FavoriteEmpty from '../../pages/favorites/favorites_empty';
+import Offer from '../../pages/offer/offer';
 
 type AppScreenProps = {
     count_places: number;
 
     cities: string[];
-    active_city_id: number;
+    activeCityId: number;
 
-    current_page: string;
-    is_needing_footer: boolean;
+    currentPage: string;
+    isNeedingFooter: boolean;
 
-    is_main: boolean;
-    was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел
+    isMain: boolean;
+    wasLogin: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел
     email?: string;
     favorite?: number;
 }
@@ -26,7 +27,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
       <Main
         count_places={appScreenProps.count_places}
         cities={appScreenProps.cities}
-        active_city_id={appScreenProps.active_city_id}
+        active_city_id={appScreenProps.activeCityId}
       />);
   }
 
@@ -34,7 +35,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     <MainEmpty
       count_places={appScreenProps.count_places}
       cities={appScreenProps.cities}
-      active_city_id={appScreenProps.active_city_id}
+      active_city_id={appScreenProps.activeCityId}
     />);
 }
 
@@ -53,16 +54,17 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
   return (
     <div>
       <Header
-        is_main={appScreenProps.is_main}
-        was_login={appScreenProps.was_login}
+        is_main={appScreenProps.isMain}
+        was_login={appScreenProps.wasLogin}
         email={appScreenProps.email}
         favorite={appScreenProps.favorite}
       />
 
-      {appScreenProps.current_page === 'main' && GetMain(appScreenProps)}
-      {appScreenProps.current_page === 'favorites' && GetFavorite(appScreenProps)}
-
-      {appScreenProps.is_needing_footer && <Footer />}
+      {appScreenProps.currentPage === 'main' && GetMain(appScreenProps)}
+      {appScreenProps.currentPage === 'favorites' && GetFavorite(appScreenProps)}
+      {appScreenProps.currentPage === 'offer' && <Offer wasLogin={appScreenProps.wasLogin >= 0}/>}
+      
+      {appScreenProps.isNeedingFooter && <Footer />}
     </div>
   );
 }
