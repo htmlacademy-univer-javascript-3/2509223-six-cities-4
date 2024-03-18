@@ -17,7 +17,10 @@ type AppScreenProps = {
 
     cities: string[];
     activeCityId: number;
+    activeCityId: number;
 
+    currentPage: string;
+    isNeedingFooter: boolean;
     currentPage: string;
     isNeedingFooter: boolean;
 
@@ -40,6 +43,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
         count_places={appScreenProps.count_places}
         cities={appScreenProps.cities}
         active_city_id={appScreenProps.activeCityId}
+        active_city_id={appScreenProps.activeCityId}
       />);
   }
 
@@ -47,6 +51,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     <MainEmpty
       count_places={appScreenProps.count_places}
       cities={appScreenProps.cities}
+      active_city_id={appScreenProps.activeCityId}
       active_city_id={appScreenProps.activeCityId}
     />);
 }
