@@ -9,7 +9,8 @@ import Layout from './layout';
 import Login from '../../pages/login';
 import React from 'react';
 import NotFound from '../../pages/404';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import PrivateRoute from '../private_route';
 
 type AppScreenProps = {
     count_places: number;
@@ -50,7 +51,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     />);
 }
 
-function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
+/*function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
   if (appScreenProps.favorite !== undefined) {
     if (appScreenProps.favorite > 0) {
       return <Favorite />;
@@ -58,7 +59,7 @@ function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
     return <FavoriteEmpty />;
   }
   return null;
-}
+}*/
 
 function GetLogin(props: AppScreenPropsSet): JSX.Element {
   props.setIsMain(false);
@@ -77,7 +78,7 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
       <Routes>
         <Route path={AppRoute.Root} element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
           <Route index element={GetMain(appScreenProps)} />
-          <Route path={AppRoute.Favorites} element={GetFavorite(appScreenProps)} />
+          <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><Favorite /></PrivateRoute>} />
           <Route path={AppRoute.Offer} element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
           <Route path={AppRoute.Login} element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
           <Route path='*' element={<NotFound/>}/>
