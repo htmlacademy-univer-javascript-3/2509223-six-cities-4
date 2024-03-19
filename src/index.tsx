@@ -12,10 +12,10 @@ export const Setting = {
   isNeedingFooter: false,
 
   isMain: true,
-  wasLogin: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел
+  wasLogin: true, //'-1' - не зашел, '0' - заходит, '1' - зашел
   email: 'Oliver.conner@gmail.com',
   favorite: 3,
-}as const;
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,13 +26,13 @@ root.render(
     <App
       count_places={Setting.countPlaces}
       cities={cities}
-      active_city_id={Setting.activeCityId}
-      current_page={Setting.currentPage}
-      is_main={Setting.isMain}
-      was_login={Setting.wasLogin}
+      activeCityId={Setting.activeCityId}
+      currentPage={Setting.currentPage}
+      isMain={Setting.isMain}
+      wasLogin={Setting.wasLogin}
       email={Setting.email}
       favorite={Setting.favorite}
-      is_needing_footer={Setting.isNeedingFooter}
+      isNeedingFooter={Setting.isNeedingFooter}
     />
   </React.StrictMode>
 );

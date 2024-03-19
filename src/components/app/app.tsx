@@ -1,23 +1,35 @@
 import MainEmpty from '../../pages/main/main_empty';
 import Main from '../../pages/main/main';
-import Header from '../header';
-import Footer from '../footer';
 import Favorite from '../../pages/favorites/favorites';
-import FavoriteEmpty from '../../pages/favorites/favorites_empty';
+import Offer from '../../pages/offer/offer';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './layout';
+import Login from '../../pages/login';
+import React from 'react';
+import NotFound from '../../pages/404';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import PrivateRoute from '../private_route';
 
 type AppScreenProps = {
     count_places: number;
 
     cities: string[];
-    active_city_id: number;
+    activeCityId: number;
 
-    current_page: string;
-    is_needing_footer: boolean;
+    currentPage: string;
+    isNeedingFooter: boolean;
 
-    is_main: boolean;
-    was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел
+    isMain: boolean;
+    wasLogin: boolean;
     email?: string;
     favorite?: number;
+}
+
+type AppScreenPropsSet = {
+  appScreenProps: AppScreenProps;
+  setIsMain: (value: boolean) => void;
+  setWasLogin: (value: boolean) => void;
 }
 
 function GetMain(appScreenProps: AppScreenProps): JSX.Element {
@@ -26,7 +38,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
       <Main
         count_places={appScreenProps.count_places}
         cities={appScreenProps.cities}
-        active_city_id={appScreenProps.active_city_id}
+        active_city_id={appScreenProps.activeCityId}
       />);
   }
 
@@ -34,11 +46,11 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     <MainEmpty
       count_places={appScreenProps.count_places}
       cities={appScreenProps.cities}
-      active_city_id={appScreenProps.active_city_id}
+      active_city_id={appScreenProps.activeCityId}
     />);
 }
 
-function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
+/*function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
   if (appScreenProps.favorite !== undefined) {
     if (appScreenProps.favorite > 0) {
       return <Favorite />;
@@ -46,24 +58,32 @@ function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
     return <FavoriteEmpty />;
   }
   return null;
+}*/
+
+function GetLogin(props: AppScreenPropsSet): JSX.Element {
+  props.setIsMain(false);
+  props.setWasLogin(false);
+  return (
+    <Login cities={props.appScreenProps.cities} active_city_id={props.appScreenProps.activeCityId}/>
+  );
 }
 
-
 function App(appScreenProps: AppScreenProps): JSX.Element {
+  const [isMain, setIsMain] = React.useState(appScreenProps.isMain);
+  const [wasLogin, setWasLogin] = React.useState(appScreenProps.wasLogin);
+
   return (
-    <div>
-      <Header
-        is_main={appScreenProps.is_main}
-        was_login={appScreenProps.was_login}
-        email={appScreenProps.email}
-        favorite={appScreenProps.favorite}
-      />
-
-      {appScreenProps.current_page === 'main' && GetMain(appScreenProps)}
-      {appScreenProps.current_page === 'favorites' && GetFavorite(appScreenProps)}
-
-      {appScreenProps.is_needing_footer && <Footer />}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoute.Root} element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
+          <Route index element={GetMain(appScreenProps)} />
+          <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><Favorite /></PrivateRoute>} />
+          <Route path={AppRoute.Offer} element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
+          <Route path={AppRoute.Login} element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
+          <Route path='*' element={<NotFound/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

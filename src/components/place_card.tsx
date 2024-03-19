@@ -9,19 +9,19 @@ type PlaceCardProps = {
 }
 
 function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
-  const mark = [];
+  const mark: JSX.Element[] = [];
   if (placeCardProps.isPremium){
     mark.push(
-      <div className="place-card__mark">
+      <div key='mark' className="place-card__mark">
         <span>Premium</span>
       </div>
     );
   }
 
-  const bookmarkButton = [];
+  const bookmarkButton: JSX.Element[] = [];
   if (placeCardProps.isFavorite){
     bookmarkButton.push(
-      <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+      <button key='bookmark' className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
         <svg className="place-card__bookmark-icon" width="18" height="19">
           <use xlinkHref="#icon-bookmark"></use>
         </svg>
@@ -30,7 +30,7 @@ function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
     );
   } else {
     bookmarkButton.push(
-      <button className="place-card__bookmark-button button" type="button">
+      <button key='bookmark' className="place-card__bookmark-button button" type="button">
         <svg className="place-card__bookmark-icon" width="18" height="19">
           <use xlinkHref="#icon-bookmark"></use>
         </svg>
