@@ -1,10 +1,13 @@
 import MainEmpty from '../../pages/main/main_empty';
 import Main from '../../pages/main/main';
-import Header from '../header';
-import Footer from '../footer';
 import Favorite from '../../pages/favorites/favorites';
 import FavoriteEmpty from '../../pages/favorites/favorites_empty';
 import Offer from '../../pages/offer/offer';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './layout';
+import Login from '../../pages/login';
+import React from 'react';
 
 type AppScreenProps = {
     count_places: number;
@@ -16,7 +19,7 @@ type AppScreenProps = {
     isNeedingFooter: boolean;
 
     isMain: boolean;
-    wasLogin: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел
+    wasLogin: boolean;
     email?: string;
     favorite?: number;
 }
@@ -49,23 +52,29 @@ function GetFavorite(appScreenProps: AppScreenProps): JSX.Element | null {
   return null;
 }
 
+function GetLogin(props: { appScreenProps: AppScreenProps; setIsMain: (value: boolean) => void; setWasLogin: (value: boolean) => void }): JSX.Element {
+  props.setIsMain(false);
+  props.setWasLogin(false);
+  return (
+    <Login cities={props.appScreenProps.cities} active_city_id={props.appScreenProps.activeCityId}/>
+  );
+}
 
 function App(appScreenProps: AppScreenProps): JSX.Element {
-  return (
-    <div>
-      <Header
-        is_main={appScreenProps.isMain}
-        was_login={appScreenProps.wasLogin}
-        email={appScreenProps.email}
-        favorite={appScreenProps.favorite}
-      />
+  const [isMain, setIsMain] = React.useState(appScreenProps.isMain);
+  const [wasLogin, setWasLogin] = React.useState(appScreenProps.wasLogin);
 
-      {appScreenProps.currentPage === 'main' && GetMain(appScreenProps)}
-      {appScreenProps.currentPage === 'favorites' && GetFavorite(appScreenProps)}
-      {appScreenProps.currentPage === 'offer' && <Offer wasLogin={appScreenProps.wasLogin >= 0}/>}
-      
-      {appScreenProps.isNeedingFooter && <Footer />}
-    </div>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
+          <Route index element={GetMain(appScreenProps)} />
+          <Route path='favorites' element={GetFavorite(appScreenProps)} />
+          <Route path='offer' element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
+          <Route path='login' element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

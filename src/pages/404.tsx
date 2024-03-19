@@ -8,7 +8,7 @@ function NotFound(): JSX.Element{
                 <br/>
                 <small>Page not found.</small>
             </h1>
-            
+                       
         </Fragment>
     );
 }

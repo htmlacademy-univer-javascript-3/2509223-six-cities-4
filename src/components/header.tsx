@@ -1,13 +1,13 @@
 type HeaderProps = {
     is_main: boolean;
-    was_login: -1|0|1; //'-1' - не зашел, '0' - заходит, '1' - зашел
+    was_login: boolean;
     email?: string;
     favorite?: number;
 }
 
 function Header(headerProps: HeaderProps): JSX.Element {
   const nav = [];
-  if (headerProps.was_login < 0){
+  if (!headerProps.was_login && headerProps.is_main){
     nav.push(
       <nav className="header__nav">
         <ul className="header__nav-list">
@@ -23,7 +23,7 @@ function Header(headerProps: HeaderProps): JSX.Element {
     );
   }
 
-  if (headerProps.was_login > 0){
+  if (headerProps.was_login && headerProps.is_main){
     nav.push(
       <nav className="header__nav">
         <ul className="header__nav-list">

@@ -4,7 +4,7 @@ import App from './components/app/app';
 
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export const Setting = {
+export let Setting = {
   countPlaces: 5,
   activeCityId: 3,
 
@@ -12,10 +12,10 @@ export const Setting = {
   isNeedingFooter: false,
 
   isMain: true,
-  wasLogin: 1, //'-1' - не зашел, '0' - заходит, '1' - зашел
+  wasLogin: true, //'-1' - не зашел, '0' - заходит, '1' - зашел
   email: 'Oliver.conner@gmail.com',
   favorite: 3,
-}as const;
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
