@@ -1,7 +1,6 @@
 import MainEmpty from '../../pages/main/main_empty';
 import Main from '../../pages/main/main';
 import Favorite from '../../pages/favorites/favorites';
-import FavoriteEmpty from '../../pages/favorites/favorites_empty';
 import Offer from '../../pages/offer/offer';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -17,10 +16,7 @@ type AppScreenProps = {
 
     cities: string[];
     activeCityId: number;
-    activeCityId: number;
 
-    currentPage: string;
-    isNeedingFooter: boolean;
     currentPage: string;
     isNeedingFooter: boolean;
 
@@ -31,8 +27,8 @@ type AppScreenProps = {
 }
 
 type AppScreenPropsSet = {
-  appScreenProps: AppScreenProps; 
-  setIsMain: (value: boolean) => void; 
+  appScreenProps: AppScreenProps;
+  setIsMain: (value: boolean) => void;
   setWasLogin: (value: boolean) => void;
 }
 
@@ -43,7 +39,6 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
         count_places={appScreenProps.count_places}
         cities={appScreenProps.cities}
         active_city_id={appScreenProps.activeCityId}
-        active_city_id={appScreenProps.activeCityId}
       />);
   }
 
@@ -51,7 +46,6 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
     <MainEmpty
       count_places={appScreenProps.count_places}
       cities={appScreenProps.cities}
-      active_city_id={appScreenProps.activeCityId}
       active_city_id={appScreenProps.activeCityId}
     />);
 }

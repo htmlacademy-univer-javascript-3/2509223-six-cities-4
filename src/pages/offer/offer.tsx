@@ -73,7 +73,7 @@ function Offer(offerProps:OfferProps): JSX.Element {
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
-                <span style={{ width: "80%" }} />
+                <span style={{ width: '80%' }} />
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">4.8</span>
@@ -94,7 +94,7 @@ function Offer(offerProps:OfferProps): JSX.Element {
               <span className="offer__price-text">&nbsp;night</span>
             </div>
             <div className="offer__inside">
-              <h2 className="offer__inside-title">What's inside</h2>
+              <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
                 <li className="offer__inside-item">Wi-Fi</li>
                 <li className="offer__inside-item">Washing machine</li>
@@ -110,17 +110,17 @@ function Offer(offerProps:OfferProps): JSX.Element {
             </div>
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
-              <Host 
+              <Host
                 user={{
-                    avatarImage: "img/avatar-angelina.jpg",
-                    name: "Angelina",
-                    isPro: true,
+                  avatarImage: 'img/avatar-angelina.jpg',
+                  name: 'Angelina',
+                  isPro: true,
                 }}
                 textComment={[
-                    "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                    "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful."
+                  'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+                  'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'
                 ]}
-              />              
+              />
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
@@ -128,16 +128,16 @@ function Offer(offerProps:OfferProps): JSX.Element {
               </h2>
               <ul className="reviews__list">
                 <li className="reviews__item">
-                  <Review 
+                  <Review
                     user={{
-                        avatarImage: "img/avatar-max.jpg",
-                        name: "Max"
+                      avatarImage: 'img/avatar-max.jpg',
+                      name: 'Max'
                     }}
                     textComment="A quiet cozy and picturesque that hides behind a a river
                     by the unique lightness of Amsterdam. The building is
                     green and from 18th century."
                     time="April 2019"
-                  />  
+                  />
                 </li>
               </ul>
               {offerProps.wasLogin && <ReviewNew />}
@@ -152,30 +152,30 @@ function Offer(offerProps:OfferProps): JSX.Element {
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <PlaceCard 
+            <PlaceCard
               isPremium = {false}
               images='img/room.jpg'
               price={80}
-              isFavorite = {true}
+              isFavorite
               title = "Wood and stone place"
               type = "Room"
             />
-            <PlaceCard 
+            <PlaceCard
               isPremium= {false}
               images='img/apartment-02.jpg'
               price = {132}
               isFavorite = {false}
               title = "Canal View Prinsengracht"
               type = "Apartment"
-            /> 
-            <PlaceCard 
+            />
+            <PlaceCard
               isPremium
               images = 'img/apartment-03.jpg'
               price = {180}
               isFavorite = {false}
               title = "Nice, cozy, warm big bed apartment"
               type = "Apartment"
-            />            
+            />
           </div>
         </section>
       </div>

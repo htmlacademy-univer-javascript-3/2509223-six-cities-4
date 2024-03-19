@@ -4,7 +4,7 @@ import App from './components/app/app';
 
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export let Setting = {
+export const Setting = {
   countPlaces: 5,
   activeCityId: 3,
 

@@ -4,7 +4,7 @@ type LoginProps = {
 }
 
 function Login(loginProps:LoginProps): JSX.Element {
-  return (    
+  return (
     <main className="page__main page__main--login">
       <div className="page__login-container container">
         <section className="login">
@@ -29,7 +29,7 @@ function Login(loginProps:LoginProps): JSX.Element {
           </div>
         </section>
       </div>
-    </main>  
+    </main>
   );
 }
 
