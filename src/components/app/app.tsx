@@ -9,6 +9,7 @@ import Layout from './layout';
 import Login from '../../pages/login';
 import React from 'react';
 import NotFound from '../../pages/404';
+import { AppRoute } from '../../const';
 
 type AppScreenProps = {
     count_places: number;
@@ -74,11 +75,11 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
+        <Route path={AppRoute.Root} element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
           <Route index element={GetMain(appScreenProps)} />
-          <Route path='favorites' element={GetFavorite(appScreenProps)} />
-          <Route path='offer/:id' element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
-          <Route path='login' element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
+          <Route path={AppRoute.Favorites} element={GetFavorite(appScreenProps)} />
+          <Route path={AppRoute.Offer} element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
+          <Route path={AppRoute.Login} element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
           <Route path='*' element={<NotFound/>}/>
         </Route>
       </Routes>
