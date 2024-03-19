@@ -11,13 +11,10 @@ type HostProps = {
 }
 
 function Host(hostProps:HostProps): JSX.Element{
-    const offerText = [];
-    offerText.push(
-        <></>
-    );
-    hostProps.textComment.forEach((str): void=>{
+    const offerText: JSX.Element[] = [];
+    hostProps.textComment.forEach((str, index): void=>{
         offerText.push(
-            <p className="offer__text">
+            <p key={index} className="offer__text">
                 {str}
             </p>
         );

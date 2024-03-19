@@ -9,7 +9,7 @@ function Header(headerProps: HeaderProps): JSX.Element {
   const nav = [];
   if (!headerProps.was_login && headerProps.is_main){
     nav.push(
-      <nav className="header__nav">
+      <nav key="no__login" className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item user">
             <a className="header__nav-link header__nav-link--profile" href="#">
@@ -25,7 +25,7 @@ function Header(headerProps: HeaderProps): JSX.Element {
 
   if (headerProps.was_login && headerProps.is_main){
     nav.push(
-      <nav className="header__nav">
+      <nav key="profile" className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item user">
             <a className="header__nav-link header__nav-link--profile" href="#">
