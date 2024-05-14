@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { CityName } from './const';
 import { offers } from './pages/offer/offers';
-import { PlaceCards, Place_Cards } from './components/place_card/place_cards';
+import { placeCards } from './components/place_card/place_cards';
 
 const cities:string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
@@ -18,9 +18,9 @@ export const Setting = {
   isMain: true,
   wasLogin: true, //'-1' - не зашел, '0' - заходит, '1' - зашел
   email: 'Oliver.conner@gmail.com',
-  favotite_cards: {
-    [CityName.Amsterdam]: [Place_Cards[CityName.Amsterdam][0], Place_Cards[CityName.Amsterdam][1]],
-    [CityName.Cologne]: [Place_Cards[CityName.Cologne][0]],
+  favotiteCards: {
+    [CityName.Amsterdam]: [placeCards[CityName.Amsterdam][0], placeCards[CityName.Amsterdam][1]],
+    [CityName.Cologne]: [placeCards[CityName.Cologne][0]],
     [CityName.Brussels]: [],
     [CityName.Hamburg]: [],
     [CityName.Dusseldorf]: [],
@@ -37,7 +37,7 @@ root.render(
     <App
       count_places={Setting.countPlaces}
       offers={offers}
-      place_cards={Place_Cards}
+      place_cards={placeCards}
       cities={cities}
       activeCityId={Setting.activeCityId}
       currentPage={Setting.currentPage}
@@ -45,7 +45,7 @@ root.render(
       isMain={Setting.isMain}
       wasLogin={Setting.wasLogin}
       email={Setting.email}
-      favorite_cards={Setting.favotite_cards}
+      favorite_cards={Setting.favotiteCards}
       isNeedingFooter={Setting.isNeedingFooter}
     />
   </React.StrictMode>

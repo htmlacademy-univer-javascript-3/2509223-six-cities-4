@@ -1,11 +1,10 @@
 import CitiesTabs from '../../components/cities_tabs';
-import PlaceCard from '../../components/place_card/place_card';
-import { PlaceCards } from '../../components/place_card/place_cards';
+import { PlaceCardsT } from '../../components/place_card/place_cards';
 import { CityName } from '../../const';
 
 type MainProps = {
     count_places: number;
-    place_cards: PlaceCards;
+    place_cards: PlaceCardsT;
 
     cities: string[];
     active_city_id: number;

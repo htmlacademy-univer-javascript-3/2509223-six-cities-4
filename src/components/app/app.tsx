@@ -6,16 +6,16 @@ import Offers from '../../pages/offer/offers';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './layout';
 import Login from '../../pages/login';
-import React, { Fragment } from 'react';
+import React from 'react';
 import NotFound from '../../pages/404';
 import { AppRoute, AuthorizationStatus, CityName } from '../../const';
 import PrivateRoute from '../private_route';
-import { PlaceCards } from '../place_card/place_cards';
+import { PlaceCardsT } from '../place_card/place_cards';
 
 type AppScreenProps = {
     count_places: number;
     offers: object;
-    place_cards: PlaceCards;
+    place_cards: PlaceCardsT;
 
     cities: string[];
     activeCityId: number;
@@ -28,7 +28,7 @@ type AppScreenProps = {
     wasLogin: boolean;
     email?: string;
 
-    favorite_cards: PlaceCards;
+    favorite_cards: PlaceCardsT;
 }
 
 type AppScreenPropsSet = {
@@ -38,11 +38,11 @@ type AppScreenPropsSet = {
 }
 
 function GetMain(appScreenProps: AppScreenProps): JSX.Element {
-  var count_places = appScreenProps.place_cards[appScreenProps.active_city].length;
-  if (count_places > 0) {
+  const countPlaces = appScreenProps.place_cards[appScreenProps.active_city].length;
+  if (countPlaces > 0) {
     return (
       <Main
-        count_places={count_places}
+        count_places={countPlaces}
         place_cards={appScreenProps.place_cards}
         cities={appScreenProps.cities}
         active_city_id={appScreenProps.activeCityId}
@@ -52,7 +52,7 @@ function GetMain(appScreenProps: AppScreenProps): JSX.Element {
 
   return (
     <MainEmpty
-      count_places={count_places}
+      count_places={countPlaces}
       cities={appScreenProps.cities}
       active_city_id={appScreenProps.activeCityId}
     />);
@@ -80,10 +80,12 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
   const [isMain, setIsMain] = React.useState(appScreenProps.isMain);
   const [wasLogin, setWasLogin] = React.useState(appScreenProps.wasLogin);
 
-  var favoriteCount = 0;
-  {Object.entries(appScreenProps.favorite_cards).map(([location, placeCards]) => ( placeCards.length > 0 ?
-    favoriteCount += placeCards.length : favoriteCount
-  ))}
+  let favoriteCount = 0;
+  Object.entries(appScreenProps.favorite_cards).forEach(([_, placeCards]) => { // eslint-disable-line @typescript-eslint/no-unused-vars
+    if (placeCards.length > 0) {
+      favoriteCount += placeCards.length;
+    }
+  });
 
   return (
     <BrowserRouter>

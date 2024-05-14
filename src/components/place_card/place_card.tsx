@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { AppRoute, CityName } from "../../const";
+import { Link } from 'react-router-dom';
+import { AppRoute, CityName } from '../../const';
 
 type PlaceCardProps = {
     key: string;
@@ -49,7 +49,7 @@ function PlaceCard(placeCardProps: PlaceCardProps): JSX.Element {
     <article className="cities__card place-card">
       {mark}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Offer + '/' + placeCardProps.city + '_' + placeCardProps.index}>
+        <Link to={`${AppRoute.Offer}/${placeCardProps.city}_${placeCardProps.index}`}>
           <img className="place-card__image" src={placeCardProps.images} width="260" height="200" alt="Place image" />
         </Link>
       </div>

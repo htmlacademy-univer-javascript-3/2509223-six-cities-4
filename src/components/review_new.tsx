@@ -7,16 +7,16 @@ import { AppRoute } from '../const';
 
 function formatDate() {
   const date = new Date();
-  
+
   // Объекты для преобразования номера месяца в его полное название
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  
+
   // Получаем номер месяца и год из даты
   const month = date.getMonth();
   const year = date.getFullYear();
-  
+
   // Преобразуем номер месяца в его полное название
   const monthName = months[month];
 
@@ -29,7 +29,7 @@ function ReviewNew(offerProps: {offerProps: OfferProps}): JSX.Element {
   const [rating, setRating] = useState(0);
   const navigate = useNavigate();
 
-  const handleReviewChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+  const handleReviewChange = (event: { target: { value: SetStateAction<string> } }) => {
     setReviewText(event.target.value);
   };
 
@@ -37,23 +37,27 @@ function ReviewNew(offerProps: {offerProps: OfferProps}): JSX.Element {
     setRating(value);
   };
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
+    const date = formatDate();
 
-    const newReview =[<Review
-      user={{
-        avatarImage: 'img/avatar-max.jpg',
-        name: 'Max',
-      }}
-      textComment = {reviewText}
-      time={formatDate()}
-      rating={rating}
-    />]
+    const newReview = [
+      <Review
+        key={offerProps.offerProps.reviews.length + date}
+        user={{
+          avatarImage: 'img/avatar-max.jpg',
+          name: 'Max',
+        }}
+        textComment = {reviewText}
+        time={date}
+        rating={rating}
+      />
+    ];
 
     offerProps.offerProps.reviews.push(newReview);
     setReviewText('');
     setRating(0);
-    navigate(AppRoute.Offer + '/' + offerProps.offerProps.city + '_' + offerProps.offerProps.index);
+    navigate(`${AppRoute.Offer }/${ offerProps.offerProps.city }_${ offerProps.offerProps.index}`);
   };
 
   return(
@@ -63,8 +67,9 @@ function ReviewNew(offerProps: {offerProps: OfferProps}): JSX.Element {
       </label>
       <div className="reviews__rating-form form__rating">
         {[5, 4, 3, 2, 1].map((value, index) => (
-          <button className="form__rating-item" title={"rating"} type="button" onClick={() => handleRatingChange(value)}>
-            <Star key={index} value={value}/>
+          // eslint-disable-next-line react/no-array-index-key
+          <button className="form__rating-item" title={'rating'} type="button" onClick={() => handleRatingChange(value)} key={`star_button${index}`}>
+            <Star key={`star${value}`} value={value}/>
           </button>
         ))}
       </div>
@@ -87,7 +92,6 @@ function ReviewNew(offerProps: {offerProps: OfferProps}): JSX.Element {
           className="reviews__submit form__submit button"
           type="submit"
           disabled={reviewText.length < 50}
-          onClick={() => {alert('Form submitted!')}}
         >
           Submit
         </button>
