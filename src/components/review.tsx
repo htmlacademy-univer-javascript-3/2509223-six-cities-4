@@ -1,13 +1,15 @@
 import { Fragment } from 'react';
 
 type ReviewProps = {
-    user: {
-        avatarImage: string;
-        name: string;
-    };
+  key?: string;
+  user: {
+      avatarImage: string;
+      name: string;
+  };
 
-    textComment: string;
-    time: string;
+  textComment: string;
+  time: string;
+  rating: number;
 }
 
 function Review(reviewProps:ReviewProps): JSX.Element{

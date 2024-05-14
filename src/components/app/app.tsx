@@ -1,29 +1,34 @@
 import MainEmpty from '../../pages/main/main_empty';
 import Main from '../../pages/main/main';
 import Favorite from '../../pages/favorites/favorites';
-import Offer from '../../pages/offer/offer';
+import Offers from '../../pages/offer/offers';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './layout';
 import Login from '../../pages/login';
 import React from 'react';
 import NotFound from '../../pages/404';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, CityName } from '../../const';
 import PrivateRoute from '../private_route';
+import { PlaceCardsT } from '../place_card/place_cards';
 
 type AppScreenProps = {
     count_places: number;
+    offers: object;
+    place_cards: PlaceCardsT;
 
     cities: string[];
     activeCityId: number;
 
     currentPage: string;
+    active_city: CityName;
     isNeedingFooter: boolean;
 
     isMain: boolean;
     wasLogin: boolean;
     email?: string;
-    favorite?: number;
+
+    favorite_cards: PlaceCardsT;
 }
 
 type AppScreenPropsSet = {
@@ -33,18 +38,21 @@ type AppScreenPropsSet = {
 }
 
 function GetMain(appScreenProps: AppScreenProps): JSX.Element {
-  if (appScreenProps.count_places > 0) {
+  const countPlaces = appScreenProps.place_cards[appScreenProps.active_city].length;
+  if (countPlaces > 0) {
     return (
       <Main
-        count_places={appScreenProps.count_places}
+        count_places={countPlaces}
+        place_cards={appScreenProps.place_cards}
         cities={appScreenProps.cities}
         active_city_id={appScreenProps.activeCityId}
+        active_city={appScreenProps.active_city}
       />);
   }
 
   return (
     <MainEmpty
-      count_places={appScreenProps.count_places}
+      count_places={countPlaces}
       cities={appScreenProps.cities}
       active_city_id={appScreenProps.activeCityId}
     />);
@@ -72,13 +80,20 @@ function App(appScreenProps: AppScreenProps): JSX.Element {
   const [isMain, setIsMain] = React.useState(appScreenProps.isMain);
   const [wasLogin, setWasLogin] = React.useState(appScreenProps.wasLogin);
 
+  let favoriteCount = 0;
+  Object.entries(appScreenProps.favorite_cards).forEach(([_, placeCards]) => { // eslint-disable-line @typescript-eslint/no-unused-vars
+    if (placeCards.length > 0) {
+      favoriteCount += placeCards.length;
+    }
+  });
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Root} element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={appScreenProps.favorite} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
+        <Route path={AppRoute.Root} element={<Layout isMain={isMain} wasLogin={wasLogin} email={appScreenProps.email} favorite={favoriteCount} isNeedingFooter={appScreenProps.isNeedingFooter}/>}>
           <Route index element={GetMain(appScreenProps)} />
-          <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><Favorite /></PrivateRoute>} />
-          <Route path={AppRoute.Offer} element={<Offer wasLogin={appScreenProps.wasLogin}/>} />
+          <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><Favorite favorite_cards={appScreenProps.favorite_cards}/></PrivateRoute>} />
+          <Route path={`${AppRoute.Offer}/:cardKey`} element={<Offers />} />
           <Route path={AppRoute.Login} element={<GetLogin appScreenProps={appScreenProps} setIsMain={setIsMain} setWasLogin={setWasLogin}/>} />
           <Route path='*' element={<NotFound/>}/>
         </Route>
